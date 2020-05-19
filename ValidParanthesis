@@ -1,0 +1,28 @@
+class Solution {
+    public boolean isValid(String s) {
+        
+      
+        Stack<Character> stack = new Stack<>();
+        
+        for(int i = 0 ; i < s.length(); i++){
+           if(s.charAt(i) == '{' || s.charAt(i) == '(' || s.charAt(i) == '['){
+            stack.push(s.charAt(i));
+            }else{
+               char c = s.charAt(i);
+               if(!stack.isEmpty() && isParanthesis(stack.peek(), c)){
+                
+                   stack.pop();
+                   
+               }else{
+                   return false;
+               }
+           }
+        }
+        return stack.isEmpty();
+    }
+    
+
+     boolean isParanthesis(char top, char c){
+     return top == '{' && c == '}' || top == '[' && c == ']' || top == '(' && c == ')' ;
+    }
+}
