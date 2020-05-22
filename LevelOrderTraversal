@@ -1,0 +1,43 @@
+package Tree;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
+
+public class LevelOrderTraversal {
+    public static void main(String[] args) {
+        LinkNode node1 = new LinkNode(1);
+        node1.left = new LinkNode(2);
+        node1.right = new LinkNode(3);
+        node1.right.left = new LinkNode(4);
+
+        Queue<LinkNode> q = new ArrayDeque<>();
+
+        q.add(node1);
+
+        while(!q.isEmpty()){
+
+            LinkNode node = q.poll();
+            System.out.println(node.data);
+
+            if(node.left != null){
+                q.add(node.left);
+            }
+
+            if(node.right != null){
+                q.add(node.right);
+            }
+
+        }
+    }
+}
+
+class LinkNode {
+
+    LinkNode left;
+    LinkNode right;
+    int data;
+
+    public LinkNode(int data){
+        this.data = data;
+    }
+}
