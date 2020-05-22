@@ -1,0 +1,41 @@
+package Tree;
+
+public class ConvertBinaryTreeToMirrorTree {
+    public static void main(String[] args) {
+        Node3 node1 = new Node3(1);
+        node1.left = new Node3(2);
+        node1.right = new Node3(3);
+        node1.right.left = new Node3(4);
+        node1.right.right = new Node3(5);
+
+
+        ConvertBinaryTreeToMirrorTree cbt = new ConvertBinaryTreeToMirrorTree();
+    cbt.createMirrorTree(node1);
+    }
+
+    private Node3 createMirrorTree(Node3 root) {
+
+        if (root == null) return null;
+
+            createMirrorTree(root.left);
+            createMirrorTree(root.right);
+
+            Node3 temp = root.left;
+            root.left = root.right;
+            root.right = temp;
+
+        return root;
+    }
+
+}
+
+class Node3{
+
+    Node3 left;
+    Node3 right;
+    int data;
+
+    public Node3(int data){
+        this.data = data;
+    }
+}
