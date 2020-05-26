@@ -16,7 +16,7 @@ public class LeftView {
 
         LeftView view = new LeftView();
 //        view.leftView(node);
-        view.topView(node);
+        view.bottomView(node);
     }
 
     private void bottomView(Node node) {
