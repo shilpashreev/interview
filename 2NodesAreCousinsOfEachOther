@@ -15,32 +15,16 @@ import java.util.Queue;
         node.right.right = new Node(7);
 
         FindNextNodeOfAGivenNode findNextNode = new FindNextNodeOfAGivenNode();
-     findNextNode.FindNextNode(node, 4,6);
+        findNextNode.compare(node, 4,6);
 
     }
 
-     private void FindNextNode(Node node, int val1, int val2) {
-
-           Node temp1 = compare( val1,node);
-           Node temp2 = compare(val2,node);
-
-           if(temp1 == null || temp2 == null){
-               System.out.println("node not found");
-           }
-           if(temp1.parent != temp2.parent  && temp1.ht == temp2.ht){
-               System.out.println(" cousins");
-           }else {
-               System.out.println("not cousins");
-
-           }
-       }
-
-
-
-
-     private Node compare(int i, Node node) {
+     private void compare(Node node, int x, int y) {
          Queue<Node> queue = new LinkedList<>();
          queue.add(node);
+
+         Node temp1 = null;
+         Node temp2 = null;
 
          int count = 1;
 
@@ -52,8 +36,12 @@ import java.util.Queue;
                  Node temp = queue.poll();
                  size--;
 
-                 if(temp.data == i){
-                    return  temp;
+                 if(temp.data == x){
+                     temp1 = temp;
+                 }
+
+                 if(temp.data == y){
+                     temp2 = temp;
                  }
 
                  if (temp.left != null){
@@ -70,7 +58,15 @@ import java.util.Queue;
              count++;
 
          }
-         return null;
+
+         if(temp1 == null || temp2 == null){
+             System.out.println("value not found");
+         }
+         if (temp1.ht == temp2.ht && temp1.parent != temp2.parent){
+             System.out.println("cousins");
+         }else{
+             System.out.println("not cousins");
+         }
      }
 
      static class Node{
