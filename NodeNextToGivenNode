@@ -1,0 +1,64 @@
+package Tree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+ class FindNextNodeOfAGivenNode {
+    public static void main(String[] args) {
+        Node node  = new Node(1);
+        node.left = new Node(2);
+        node.right = new Node(3);
+        node.left.left = new Node(4);
+        node.left.right = new Node(5);
+        node.right.left = new Node(6);
+        node.right.right = new Node(7);
+
+        FindNextNodeOfAGivenNode findNextNode = new FindNextNodeOfAGivenNode();
+        Node res =findNextNode.FindNextNode(node, 7);
+        if (res == null){
+            System.out.println(" Right Node doesnt exist ");
+        }else{
+            System.out.println(res.data);
+
+        }
+    }
+
+     private Node FindNextNode(Node node, int val) {
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(node);
+
+        while (!queue.isEmpty()){
+
+            int size= queue.size();
+
+            while(size > 0){
+                Node temp = queue.poll();
+                size--;
+
+                if(temp.data == val){
+                    if (size == 0){
+                        return null;
+                    }
+                    return queue.peek();
+                }
+
+                if (temp.left != null) queue.add(temp.left);
+                if (temp.right != null) queue.add(temp.right);
+            }
+
+        }
+        return null;
+     }
+
+     static class Node{
+        int data;
+        Node left;
+        Node right;
+        int ht;
+
+        Node(int data){
+            this.data = data;
+        }
+    }
+}
