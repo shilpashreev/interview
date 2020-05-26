@@ -1,0 +1,68 @@
+package Tree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+ class CompleteBinaryTree1 {
+    public static void main(String[] args) {
+        Node node  = new Node(1);
+        node.left = new Node(2);
+        node.right = new Node(3);
+        node.left.left = new Node(4);
+        node.left.right = new Node(5);
+        node.right.left = new Node(6);
+        node.right.right = new Node(7);
+
+        CompleteBinaryTree1 completeBinaryTree = new CompleteBinaryTree1();
+      boolean res =  completeBinaryTree.CheckCompleteTree(node);
+        System.out.println("Binary tree = "+ res);
+    }
+
+     private boolean CheckCompleteTree(Node node) {
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(node);
+        boolean flag = false;
+
+        while (!queue.isEmpty()){
+
+            Node temp = queue.poll();
+
+            if(temp.left == null && temp.right != null){
+                return false;
+            }
+
+            if(flag && (temp.left != null || temp.right != null )){
+                return false;
+            }
+
+            if(temp.left != null){
+                queue.add(temp.left);
+            }else{
+                flag = true;
+            }
+
+            if(temp.right != null){
+                queue.add(temp.right);
+            }else
+            {
+                flag = true;
+            }
+
+
+        }
+         return flag;
+     }
+
+
+     static class Node{
+        int data;
+        Node left;
+        Node right;
+        int ht;
+
+        Node(int data){
+            this.data = data;
+        }
+    }
+}
