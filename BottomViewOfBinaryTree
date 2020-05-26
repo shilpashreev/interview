@@ -1,0 +1,86 @@
+package Tree;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class LeftView {
+    public static void main(String[] args) {
+        Node node  = new Node(1);
+        node.left = new Node(2);
+        node.right = new Node(3);
+//        node.left.left = new Node(4);
+//        node.left.right = new Node(5);
+//        node.right.left = new Node(6);
+//        node.right.right = new Node(7);
+
+        LeftView view = new LeftView();
+//        view.leftView(node);
+        view.topView(node);
+    }
+
+    private void bottomView(Node node) {
+        Queue<Node> queue = new LinkedList<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        queue.add(node);
+        node.ht = 0;
+        while (!queue.isEmpty()){
+
+            Node temp = queue.poll();
+                map.put(temp.ht,temp.data);
+
+            if(temp.left != null)
+            {
+                queue.add(temp.left);
+                temp.left.ht =  temp.ht -1 ;
+            }
+
+            if(temp.right != null)
+            {
+                queue.add(temp.right);
+                temp.right.ht = temp.ht + 1;
+            }
+        }
+
+        System.out.println(map);
+    }
+
+    private void leftView(Node node) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(node);
+
+        boolean flag = true;
+        while (!queue.isEmpty()){
+
+            int count = queue.size();
+
+            while (count > 0 ){
+
+                Node temp = queue.poll();
+                if(flag ) {System.out.println(temp.data); flag = !flag;}
+                count--;
+
+                if(temp.left != null){
+                    queue.add(temp.left);
+                }
+                if(temp.right != null ){
+                    queue.add(temp.right);
+                }
+
+            }
+            flag = true;
+        }
+    }
+
+    static class Node{
+        int data;
+        Node left;
+        Node right;
+        int ht;
+
+        Node(int data){
+            this.data = data;
+        }
+    }
+}
