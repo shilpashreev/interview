@@ -1,0 +1,45 @@
+class Solution {
+    public int[] sortArray(int[] nums) {
+        
+        return sort(nums,0,nums.length-1);
+    }
+
+    public int[] sort(int nums[], int low, int high){
+        if(low < high){
+            int pivot = partition(nums, low,high);
+            sort(nums,low,pivot-1);
+            sort(nums,pivot+1,high);
+        }
+        return nums;
+    }
+
+    int partition(int[] nums, int low, int high){
+        int p = nums[high];
+        int i = low;
+        int j = high;
+
+        while(i < j){
+            while(nums[i]< p && i <=high){
+                i++;
+            }
+            while(nums[j]>=p && j>0){
+                j--;
+            }
+            if(i<j){
+                swap(i,j, nums);
+            }
+
+        }
+        int temp = nums[high];
+        nums[high] = nums[i];
+        nums[i] = temp;
+
+        return i;
+    }
+
+    void swap(int i , int j, int nums[]){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
