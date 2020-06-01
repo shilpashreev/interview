@@ -1,0 +1,32 @@
+package BinaryTree;
+
+class Sol{
+    public static void main(String[] args) {
+        int a[] = {-7,-3,-1,4,8,12};
+
+        a =squaredSortedArray(a);
+        for(int i = 0; i <a.length;i++){
+            System.out.println(a[i]);
+        }
+    }
+
+    public static int[] squaredSortedArray(int a[]){
+        int start = 0;
+        int end = a.length - 1;
+        int res[] = new int[a.length];
+
+        for(int i = a.length-1; i>=0 ; i--){
+            if(Math.abs(a[start] ) > Math.abs(a[end])){
+                res[i]= a[start]*a[start];
+                start++;
+            }else{
+                res[i]= a[end]*a[end];
+                end--;
+            }
+
+
+        }
+        return  res;
+    }
+
+}
