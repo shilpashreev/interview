@@ -1,0 +1,14 @@
+class Solution {
+    public String toLowerCase(String str) {
+        String res = "";
+        
+        for(char c : str.toCharArray()){
+            if(Character.isUpperCase(c)){
+                res += (char)(c+32);
+            }else{
+                res += c;
+            }
+        }
+        return res;
+    }
+}
