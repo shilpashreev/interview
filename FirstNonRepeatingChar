@@ -1,0 +1,22 @@
+package BinaryTree;
+
+class Sol{
+    public static void main(String[] args) {
+        String a = "abaabcadadc";
+
+        System.out.println(FirstNonRepeatingChar(a));
+    }
+
+    private static char FirstNonRepeatingChar(String a) {
+        char arr[] = a.toCharArray();
+
+        for(int i = 0; i < a.length();i++){
+           if(a.indexOf(a.charAt(i))==a.lastIndexOf(a.charAt(i))){
+               return a.charAt(i);
+           }
+        }
+        return ' ';
+    }
+
+
+}
