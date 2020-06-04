@@ -1,0 +1,35 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        
+        char[][] chars = new char[8][]; 
+        chars[0]="abc".toCharArray();
+        chars[1]="def".toCharArray();
+        chars[2]="ghi".toCharArray();
+        chars[3]="jkl".toCharArray();
+        chars[4]="mno".toCharArray();
+        chars[5]="pqrs".toCharArray();
+        chars[6]="tuv".toCharArray();
+        chars[7]="wxyz".toCharArray();
+        
+        char[] input = digits.toCharArray();
+        
+        List<String> list = new ArrayList<>();
+        if(digits.length() == 0 || digits == null){
+            return list;
+        }
+        list.add("");
+        
+        for(char c : input){
+           char[] arr = chars[c-'2'];
+            List<String> next = new ArrayList<String>();
+            
+            for(String s:list){
+                for(char i : arr){
+                    next.add(s+i);
+                }
+            }
+            list = next;
+        }
+        return list;
+    }
+}
