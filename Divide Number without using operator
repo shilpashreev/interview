@@ -1,0 +1,22 @@
+package random;
+
+
+// No /, modulus operator are used
+public class DivideNumberWithoutOperator {
+    public static void main(String[] args) {
+        int dividend = 12;
+        int divisor = 3;
+        int qoutient = devideNumber(dividend,divisor);
+        System.out.println(qoutient);
+    }
+
+    private static int devideNumber(int dividend, int divisor) {
+        int quotient = 0;
+
+        while(dividend >= divisor){
+            quotient++;
+            dividend = dividend - divisor;
+        }
+        return quotient;
+    }
+}
