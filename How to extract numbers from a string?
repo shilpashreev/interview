@@ -1,0 +1,27 @@
+package random;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+class Solution {
+
+    //To extract numerics through regex
+    //Input: "abd123ab12";
+    //Output : [123,12]
+    
+    public static void main(String[] args) {
+        String str = "abd123ab12";
+        List<Integer> list = new ArrayList<Integer>();
+
+        Pattern pattern =  Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(str);
+        while(matcher.find()){
+            list.add(Integer.parseInt(matcher.group()));
+        }
+        System.out.println(list);
+
+    }
+
+}
