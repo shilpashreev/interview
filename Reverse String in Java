@@ -1,0 +1,33 @@
+///In place reversal of STring
+
+//Time complexity: O(n/2)
+//Space complexity : O(1)
+
+public class ReverseString {
+    public static void main(String[] args) {
+        String str = "Shilpa";
+
+
+        System.out.println(reverseString(str));
+    }
+
+    private static String reverseString(String str) {
+        if(str == null || str.isEmpty()) return str;
+
+        int i = 0;
+        int j = str.length()-1;
+
+        char[] strArr = str.toCharArray();
+
+        while(i<j){
+            char temp = strArr[i];
+            strArr[i] = strArr[j];
+            strArr[j]= temp;
+            i++;
+            j--;
+        }
+
+        return new String(strArr);
+
+    }
+}
