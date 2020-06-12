@@ -1,0 +1,27 @@
+package String;
+
+Time complexity : O(n)
+Space Complexity : O(n)
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class RepeatedCharacters {
+    public static void main(String[] args) {
+        String str = "java";
+        findRepeatedChars(str);
+    }
+
+    private static void findRepeatedChars(String str) {
+        HashMap<Character,Integer> map = new HashMap<>();
+
+        for(int i = 0; i < str.length(); i++){
+            map.put(str.charAt(i),map.getOrDefault(str.charAt(i),0)+1);
+        }
+
+        for(Map.Entry<Character,Integer> map1:  map.entrySet()){
+            if(map1.getValue()  >1)
+            System.out.println(map1.getKey() + "   " + map1.getValue());
+        }
+    }
+}
