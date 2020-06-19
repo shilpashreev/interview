@@ -1,0 +1,35 @@
+class Solution {
+    public int[] sortedSquares(int[] A) {
+        int[] ans = new int[A.length];
+        
+        int i = 0;
+        int count = 0;
+        
+        while(i<A.length && A[i] < 0 ){
+            i++;
+        }
+        
+        int j = i-1;
+        
+        while(j >= 0 && i < A.length){
+            if(A[j]*A[j] < A[i]*A[i]){
+                ans[count++] = A[j]*A[j];
+                j--;
+            }else{
+                ans[count++] = A[i]*A[i];
+                i++;
+            }
+        }
+        
+        while(j>=0){
+            ans[count++] = A[j]*A[j];
+                j--;
+        }
+        
+        while(i<A.length){
+            ans[count++] = A[i]*A[i];
+                i++;
+        }
+        return ans;
+    }
+}
