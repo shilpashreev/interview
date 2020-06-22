@@ -1,0 +1,41 @@
+package BinaryTree;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class KthLargestAndKthSmallestInBST {
+    public static void main(String[] args) {
+        Node node = new Node(15);
+        node.left = new Node(10);
+        node.left.left = new Node(8);
+        node.left.right = new Node(12);
+        node.right = new Node(20);
+        node.right.left = new Node(16);
+        node.right.right = new Node(25);
+
+        List<Integer> list = new ArrayList<>();
+        findSmallestLargest(node,list);
+
+        int k = 2;
+        System.out.println(list.get(k-1));
+    }
+
+    private static void findSmallestLargest(Node root, List<Integer> list) {
+        if(root == null) return ;
+        
+        findSmallestLargest(root.left,list);
+        list.add(root.data);
+        findSmallestLargest(root.right,list);
+
+    }
+
+    static class Node{
+        Node left;
+        Node right;
+        int data;
+
+        Node(int data){
+            this.data = data;
+        }
+    }
+}
